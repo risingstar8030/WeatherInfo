@@ -1,0 +1,14 @@
+<div class="container">
+    <h4 class="text-center">Weather Information</h4>
+    <div class="row">
+        <div class="card text-white bg-secondary mb-3  ml-5 mt-3" *ngFor="let city of cities" style="width: 18rem;">
+            <div class="card-header">{{city.name}}</div>
+            <div class="card-body text-center">
+                <h5 class="card-title">{{city.weather.date | date}}</h5>
+                <p>Temp : {{city.weather.temp}} Deg</p>
+                <p>Wind :  {{city.weather.wind}} KMPH</p>
+                <p>Humidity :  {{city.weather.humidity}} %</p>
+            </div>
+        </div>
+    </div>
+</div>

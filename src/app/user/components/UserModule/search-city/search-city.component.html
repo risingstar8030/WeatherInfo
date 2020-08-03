@@ -1,0 +1,53 @@
+<div class="container-fluid containercss">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="search-hero">
+        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+          placeholder="Search City">
+      </div>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th style="text-align : center">City Name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let city of cities | filter:searchText | paginate: { itemsPerPage: 4, currentPage: p }">
+
+            <td style="text-align : center">{{city}}</td>
+            <td><button class="btn btn-outline-success" (click)="getWeatherInfo(city)">View</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-8" *ngIf="city?.length">
+      <div class="card text-white bg-secondary " style="max-width: 50rem;">
+        <div class="card-header">Weather Information : {{todayInfo?.weather.date | date}}</div>
+        <div class="card-body">
+          <h5 class="card-title">{{todayInfo?.name}}</h5>
+          <p class="card-text">Temp : {{todayInfo?.weather.temp}} Deg | Wind :{{todayInfo?.weather.wind}} KMPH | Humidity : {{todayInfo?.weather.humidity}} %</p>
+
+          <div class="container-fluid">
+            <div class="row flex-row flex-nowrap">
+              <div class="col-3" *ngFor="let w of city">
+                <div class="card card-block" style="color: black;">
+                  <div class="card-body">
+                    <h5 class="card-title">{{w?.weather.date | date}}</h5>
+                    <p>Temp : {{w?.weather.temp}} Deg</p>
+                    <p>Wind :  {{w?.weather.wind}} KMPH</p>
+                    <p>Humidity :  {{w?.weather.humidity}} %</p>
+                  </div>
+                </div>
+              </div>
+    
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

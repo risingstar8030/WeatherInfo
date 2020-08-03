@@ -1,0 +1,65 @@
+<div class="container">
+    <section style="margin-top: 6rem;">
+        <div class="container">
+            <form novalidate #frm="ngForm" (ngSubmit)="register(frm)">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-8 col-xl-6 border border-dark" style="padding: 4rem;">
+                        <div class="row">
+                            <div class="col text-center">
+                                <h1>Register</h1>
+                            </div>
+                        </div>
+                        <div class="row align-items-center mt-4">
+                            <div class="col">
+                                <input type="text" class="form-control" name="firstName" [(ngModel)]="user.firstName"
+                                    placeholder="First Name" required #firstName='ngModel'>
+
+                                <div *ngIf="firstName.errors?.required && firstName.touched" class="alert alert-danger">
+                                    FirstName is required
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row align-items-center mt-4">
+                            <div class="col">
+                                <input type="text" class="form-control" name="lastName" [(ngModel)]="user.lastName"
+                                    placeholder="Last Name" required #lastName='ngModel'>
+                                <div *ngIf="lastName.errors?.required && lastName.touched" class="alert alert-danger">
+                                    LastName is required
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row align-items-center mt-4">
+                            <div class="col">
+                                <input type="email" class="form-control" placeholder="Email" name="email"
+                                    [(ngModel)]="user.email" #userEmail='ngModel' required>
+
+                                <div *ngIf="userEmail.errors?.required && userEmail.touched" class="alert alert-danger">
+                                    Email ID is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col mt-4">
+                                <input type="password" class="form-control" name="password" placeholder="Password"
+                                    [(ngModel)]="user.password" #userPass='ngModel' required minlength="4">
+                                <div *ngIf="userPass.errors?.required && userPass.touched" class="alert alert-danger">
+                                    Password is required
+                                </div>
+                                <div *ngIf="userPass.errors?.minlength && userPass.touched" class="alert alert-danger">
+                                    Password should be atleast 4 characteres
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <button class="btn btn-primary mt-4 btn-block" [disabled]="frm.invalid">Submit</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
